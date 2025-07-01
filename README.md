@@ -2,6 +2,14 @@
 
 This project provides a simple yet powerful OCR (Optical Character Recognition) service through a FastMCP server, leveraging the capabilities of the Google Gemini API. It allows you to extract text from images either by providing a file path or a base64 encoded string.
 
+## Objective
+
+**Extract the text from the following image:**
+
+![CAPTCHA](CAPTCHA.png "CAPTCHA CODE")
+
+**and convert it to plain text, e.g., fbVk**
+
 ## Features
 
 -	**File-based OCR:** Extract text directly from an image file on your local system.
@@ -16,9 +24,9 @@ This project provides a simple yet powerful OCR (Optical Character Recognition) 
 
 ## Setup and Installation
 
-1.	**Clone the repository (optional):**
+1.	**Clone the repository:**
     ```bash
-    git clone <repository_url>
+    git clone https://github.com/WindoC/gemini-ocr-mcp
     cd gemini-ocr-mcp
     ```
 
@@ -43,29 +51,7 @@ This project provides a simple yet powerful OCR (Optical Character Recognition) 
     pip install -r requirements.txt
     ```
 
-## Configuration
-
-This application requires a Google Gemini API key to function. You can either set it in a `.env` file or directly in your MCP configuration.
-
-### 1. Using a `.env` file (Recommended)
-
-1.	**Create a `.env` file:**
-    You can copy the example file:
-    ```bash
-    cp .env.example .env
-    ```
-
-2.	**Set your API Key:**
-    Open the `.env` file and add your Google Gemini API key:
-    ```
-    GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
-
-    # Optional: Specify a different Gemini model
-    # GEMINI_MODEL="gemini-pro-vision"
-    ```
-    The application will load these environment variables automatically. The default model is `gemini-2.5-flash-preview-05-20` if not specified.
-
-### 2. Using MCP Configuration
+## MCP Configuration Example
 
 If you are running this as a server for a parent MCP application, you can configure it in your main MCP `config.json`.
 
@@ -105,30 +91,6 @@ If you are running this as a server for a parent MCP application, you can config
 }
 ```
 **Note:** Remember to replace the placeholder paths with the absolute path to your project directory.
-
-## Usage
-
-1.	**Start the MCP Server:**
-    Run the `gemini-ocr-mcp.py` script from your terminal:
-    ```bash
-    python gemini-ocr-mcp.py
-    ```
-    The server will start and be ready to accept tool calls.
-
-2.	**Using the OCR Tools (from another terminal):**
-    You can use the `mcp` CLI to interact with the server's tools.
-
-    *	**Example with an image file:**
-        ```bash
-        mcp ocr_image_file --image_file "path/to/your/image.png"
-        ```
-        Replace `"path/to/your/image.png"` with the actual path to your image file (e.g., `驗證碼.png`).
-
-    *	**Example with a base64 string:**
-        First, get the base64 representation of your image. Then, you can call the tool:
-        ```bash
-        mcp ocr_image_base64 --base64_image "YOUR_BASE64_ENCODED_STRING"
-        ```
 
 ## Tools Provided
 
