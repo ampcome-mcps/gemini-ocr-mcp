@@ -33,22 +33,18 @@ This project provides a simple yet powerful OCR (Optical Character Recognition) 
 2.	**Create and activate a virtual environment:**
 
     ```bash
-    # install virtualenv if needed
-    pip3 install virtualenv
+    # Install uv standalone if needed
+
+    ## On macOS and Linux.
+    curl -LsSf https://astral.sh/uv/install.sh | sh
     
-    # Create the virtual environment
-    python -m venv .venv
-
-    # Activate on Windows
-    .venv\Scripts\activate
-
-    # Activate on macOS/Linux
-    source .venv/bin/activate
+    ## On Windows.
+    powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
     ```
 
 3.	**Install the required dependencies:**
     ```bash
-    pip install -r requirements.txt
+    uv sync
     ```
 
 ## MCP Configuration Example
@@ -60,9 +56,12 @@ If you are running this as a server for a parent MCP application, you can config
 {
   "mcpServers": {
     "gemini-ocr-mcp": {
-      "command": "x:\\path\\to\\your\\project\\gemini-ocr-mcp\\.venv\\Scripts\\python.exe",
+      "command": "uv",
       "args": [
-        "x:\\path\\to\\your\\project\\gemini-ocr-mcp\\gemini-ocr-mcp.py"
+        "--directory",
+        "x:\\path\\to\\your\\project\\gemini-ocr-mcp",
+        "run",
+        "gemini-ocr-mcp.py"
       ],
       "env": {
         "GEMINI_MODEL": "gemini-2.5-flash-preview-05-20",
@@ -78,9 +77,12 @@ If you are running this as a server for a parent MCP application, you can config
 {
   "mcpServers": {
     "gemini-ocr-mcp": {
-      "command": "/path/to/your/project/gemini-ocr-mcp/.venv/bin/python",
+      "command": "uv",
       "args": [
-        "/path/to/your/project/gemini-ocr-mcp/gemini-ocr-mcp.py"
+        "--directory",
+        "/path/to/your/project/gemini-ocr-mcp"
+        "run",
+        "gemini-ocr-mcp.py"
       ],
       "env": {
         "GEMINI_MODEL": "gemini-2.5-flash-preview-05-20",
