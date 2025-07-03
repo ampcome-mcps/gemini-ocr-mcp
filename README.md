@@ -80,7 +80,7 @@ If you are running this as a server for a parent MCP application, you can config
       "command": "uv",
       "args": [
         "--directory",
-        "/path/to/your/project/gemini-ocr-mcp"
+        "/path/to/your/project/gemini-ocr-mcp",
         "run",
         "gemini-ocr-mcp.py"
       ],
