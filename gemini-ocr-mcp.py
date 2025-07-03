@@ -13,7 +13,14 @@ mcp = FastMCP("Gemini OCR")
 def ocr_image_base64(base64_image: str) -> str:
     """
     Performs OCR on a base64 encoded image using the Google Gemini API.
-    Returns the extracted text.
+
+    Args:
+        base64_image: Base64-encoded string representing the image.
+
+    Returns:
+        Extracted text from the image as a string.
+        If no text is found, returns "No text found in the image."
+        If an error occurs, returns an error message string.
     """
     try:
         # Decode the base64 image string
@@ -85,8 +92,15 @@ def ocr_image_base64(base64_image: str) -> str:
 @mcp.tool(title="OCR Image (File)")
 def ocr_image_file(image_file: str) -> str:
     """
-    Performs OCR on a image file using the Google Gemini API.
-    Returns the extracted text.
+    Performs OCR on an image file using the Google Gemini API.
+
+    Args:
+        image_file: Path to the image file (full path).
+
+    Returns:
+        Extracted text from the image as a string.
+        If no text is found, returns "No text found in the image."
+        If an error occurs, returns an error message string.
     """
     # open the image file
     try:
