@@ -1,7 +1,7 @@
 [project]
 name = "gemini-ocr-mcp"
 version = "0.1.0"
-description = "Add your description here"
+description = "OCR service using Google Gemini API for images and PDFs"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -9,10 +9,21 @@ dependencies = [
     "mcp[cli]>=1.10.1",
     "pillow>=11.3.0",
     "python-dotenv>=1.1.1",
+    "aiohttp>=3.8.0",
+    "PyMuPDF>=1.23.0",
 ]
 
 [project.scripts]
-gemini-ocr-mcp = "main:run"
+gemini-ocr-mcp = "gemini_ocr_mcp.main:run"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["gemini_ocr_mcp*"]
+exclude = ["test_*", "examples*"]
 
 [tool.uv]
 package = true
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
